@@ -29,6 +29,16 @@ client.on('message', message => {
 
     const command = client.commands.get(commandName);
 
+    if (command.args && !args.length) {
+        let reply = "Você não passou nenhum parametro.";
+
+        if (command.usage) {
+            reply += `\nO uso do comando deve ser feito da seguinte maneira: ${prefix}${command.name} ${command.usage}`;
+        }
+
+        return message.reply(reply);
+    }
+
     try {
         command.execute(message, args);
     } catch (error) {

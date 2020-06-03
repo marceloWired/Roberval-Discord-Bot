@@ -2,6 +2,7 @@ module.exports = {
     name: 'apagar-chat',
     description: 'Apaga o chat',
     args: true,
+    usage: '<quantidade linhas>',
     execute(message, args) {
         const quantidade = parseInt(args[0]) + 1;
 
