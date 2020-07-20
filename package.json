@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "discord.js": "^12.2.0",
     "mongoose": "^5.9.25",
     "puppeteer": "^3.3.0"

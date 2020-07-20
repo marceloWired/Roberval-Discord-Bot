@@ -22,7 +22,6 @@ module.exports = {
             }
         })
         page.close();
-
         message.reply(`1 ${resultado.nomeMoedaBase} equivale a ${resultado.valor} ${resultado.nomeMoedaFinal}`);
 
     }
