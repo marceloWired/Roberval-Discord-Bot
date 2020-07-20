@@ -1,6 +1,8 @@
 const fs = require('fs');
 const Discord = require('discord.js');
+const mongoose = require('mongoose');
 const { token, prefix } = require('./config.json');
+const { mongodbUrlConnect } = require('./config.json');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -17,6 +19,12 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
     console.log('Ready!');
+});
+
+// starting database connect
+mongoose.connect(mongodbUrlConnect, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 client.on('message', message => {
