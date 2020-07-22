@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 async function findSteam64(steamUrl){
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
     });
     const page = await browser.newPage();
     const link = 'https://steamrep.com/';
