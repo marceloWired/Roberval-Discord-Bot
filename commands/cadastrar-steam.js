@@ -1,6 +1,9 @@
 const findSteamID = require('../utils/findSteamId');
 const createUser = require('../utils/createUser');
 const User = require('../models/User');
+const errorEmbed = require('../embeds/createFail');
+const successEmbed = require('../embeds/createSuccess');
+const alreadyExistEmbed = require('../embeds/userAlreadyExist')
 
 module.exports = {
     name: 'cadastrar-steam',
@@ -22,12 +25,12 @@ module.exports = {
         if(!userVerify){
             const response = await createUser(user);
             if(response){
-                message.reply('Usuário criado com sucesso!');
+                message.channel.send({embed: successEmbed});
             }else {
-                message.reply('Houve um erro ao cadastrar usuário. Tente novamente mais tarde');
+                message.channel.send({embed: errorEmbed});
             }
         }else {
-            message.reply('Você já cadastrou um usuario!')
+            message.channel.send({embed: alreadyExistEmbed});
         }   
     }
 }
