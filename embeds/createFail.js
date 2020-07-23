@@ -1,14 +1,14 @@
 const failEmbed = {
 	color: '#c41212',
-	title: 'Usuário criado com sucesso!',
+	title: 'Falha ao criar o usuario!',
 	author: {
-		name: 'Sucesso!',
-		icon_url: 'https://i.imgur.com/xAKvOQR.png',
+		name: '',
+		icon_url: 'https://i.imgur.com/7qPpz1n.png',
 	},
-	description: 'Deu tudo certo com a criação do seu usuário!',
+	description: 'Houve um erro ao criar seu usuário, por favor tente novamente!',
 	thumbnail: {
-        url: 'https://i.imgur.com/xAKvOQR.png',
-    }
+		url: 'https://i.imgur.com/7qPpz1n.png',
+	}
 };
 
 module.exports = failEmbed;
