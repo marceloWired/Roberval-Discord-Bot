@@ -28,10 +28,10 @@ module.exports = {
 
             const response = await createUser(user);
 
-            if (response) {
-                message.channel.send({ embed: successEmbed });
-            } else {
+            if (!response) {
                 message.channel.send({ embed: errorEmbed });
+            } else {
+                message.channel.send({ embed: successEmbed });
             }
         } else {
             message.channel.send({ embed: alreadyExistEmbed });
