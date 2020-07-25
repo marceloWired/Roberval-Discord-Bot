@@ -4,6 +4,7 @@ const axios = require('axios');
 const { brawlhallaApiKey } = require('../config.json');
 const brawlhallaEmbedCreator = require('../embeds/brawlhallaStats')
 const failBrawlhallaEmbed = require('../embeds/brawlhallaStatsFail')
+const isEmpty = require('../utils/isEmpty');
 
 module.exports = {
     name: 'braw-stats',
@@ -26,8 +27,10 @@ module.exports = {
             console.log(e);
         })
 
-        if (brawlhallaData == {}) {
-            return message.channel.send({ embed: failBrawlhallaEmbed })
+        const verifyEmpty = isEmpty(brawlhallaData);
+
+        if (verifyEmpty) {
+            return message.channel.send({ embed: failBrawlhallaEmbed });
         }
 
         const brawlhallaEmbed = brawlhallaEmbedCreator(brawlhallaData.name, brawlhallaData.rating, brawlhallaData.tier, brawlhallaData.peak_rating);

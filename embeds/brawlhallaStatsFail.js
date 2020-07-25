@@ -7,7 +7,7 @@ const failBrawlhallaEmbed = {
     },
     description: 'Houve um erro ao buscar suas informações, entre em contato com o desenvolvedor para reclamar',
     thumbnail: {
-        url: 'https://i.imgur.com/7qPpz1n.png',
+        url: 'https://i.imgur.com/P8lmST5.png',
     }
 };
 
