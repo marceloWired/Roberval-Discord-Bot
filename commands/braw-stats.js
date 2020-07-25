@@ -1,9 +1,7 @@
-const notRegisteredEmbed = require('../embeds/notRegistered');
 const User = require('../models/User');
 const axios = require('axios');
 const { brawlhallaApiKey } = require('../config.json');
-const brawlhallaEmbedCreator = require('../embeds/brawlhallaStats')
-const failBrawlhallaEmbed = require('../embeds/brawlhallaStatsFail')
+const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed } = require('../embeds/brawlhallaStats')
 const isEmpty = require('../utils/isEmpty');
 
 module.exports = {
@@ -17,7 +15,6 @@ module.exports = {
             return message.channel.send({ embed: notRegisteredEmbed })
         }
 
-        console.log(user.brawlhallaID);
         const link = `https://api.brawlhalla.com/player/${user.brawlhallaID}/ranked?api_key=${brawlhallaApiKey}`;
         let brawlhallaData;
 
@@ -33,7 +30,7 @@ module.exports = {
             return message.channel.send({ embed: failBrawlhallaEmbed });
         }
 
-        const brawlhallaEmbed = brawlhallaEmbedCreator(brawlhallaData.name, brawlhallaData.rating, brawlhallaData.tier, brawlhallaData.peak_rating);
+        const brawlhallaEmbed = createEmbed(brawlhallaData.name, brawlhallaData.rating, brawlhallaData.tier, brawlhallaData.peak_rating);
 
         return message.channel.send({ embed: brawlhallaEmbed });
     }

@@ -1,9 +1,7 @@
 const findSteamID = require('../utils/findSteamId');
 const createUser = require('../utils/createUser');
 const User = require('../models/User');
-const errorEmbed = require('../embeds/createFail');
-const successEmbed = require('../embeds/createSuccess');
-const alreadyExistEmbed = require('../embeds/userAlreadyExist')
+const { errorEmbed, successEmbed, alreadyExistEmbed } = require('../embeds/createUser')
 
 module.exports = {
     name: 'cadastrar-steam',
