@@ -61,5 +61,17 @@ module.exports = {
                 value: '_cadastrar-steam <linkSteam>'
             }
         ]
+    },
+    userMentionError: {
+        color: '#c41212',
+        title: 'Falha ao resgatar informações',
+        author: {
+            name: 'Erro',
+            icon_url: 'https://i.imgur.com/7qPpz1n.png',
+        },
+        description: 'Você deve mencionar um usuário!',
+        thumbnail: {
+            url: 'https://i.imgur.com/P8lmST5.png',
+        }
     }
 }

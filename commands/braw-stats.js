@@ -1,15 +1,26 @@
 const User = require('../models/User');
 const axios = require('axios');
 const { brawlhallaApiKey } = require('../config.json');
-const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed } = require('../embeds/brawlhallaStats')
+const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed, userMentionError } = require('../embeds/brawlhallaStats')
 const isEmpty = require('../utils/isEmpty');
+const getUserMentioned = require('../utils/getUserMentioned');
 
 module.exports = {
     name: 'braw-stats',
     description: 'Retorna suas informações do brawlhalla',
     async execute(message, args) {
-        const authorID = message.author.id;
-        const user = await User.findOne({ discordID: authorID });
+        let targetID;
+        if (args.length >= 1) {
+            const mention = args[0];
+            targetID = getUserMentioned(mention);
+            if (!targetID) {
+                return message.channel.send({ embed: userMentionError });
+            }
+        } else {
+            targetID = message.author.id;
+        }
+
+        const user = await User.findOne({ discordID: targetID });
 
         if (!user) {
             return message.channel.send({ embed: notRegisteredEmbed })
