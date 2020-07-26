@@ -1,7 +1,7 @@
 const findSteamID = require('../utils/findSteamId');
 const createUser = require('../utils/createUser');
 const User = require('../models/User');
-const { errorEmbed, successEmbed, alreadyExistEmbed } = require('../embeds/createUser')
+const { errorEmbed, successEmbed, alreadyExistEmbed, incorrectUrlEmbed } = require('../embeds/createUser')
 
 module.exports = {
     name: 'cadastrar-steam',
@@ -14,8 +14,16 @@ module.exports = {
 
         const userVerify = await User.findOne({ discordID: authorID });
 
-        if (!userVerify) {
+        if (userVerify) {
+            message.channel.send({ embed: alreadyExistEmbed });
+        } else {
             const urlSteam = args[0];
+
+            const verifyUrl = urlSteam.match('https://steamcommunity.com');
+
+            if (!verifyUrl) {
+                return message.channel.send({ embed: incorrectUrlEmbed });
+            }
 
             const { steamID64 } = await findSteamID(urlSteam);
 
@@ -31,8 +39,6 @@ module.exports = {
             } else {
                 message.channel.send({ embed: successEmbed });
             }
-        } else {
-            message.channel.send({ embed: alreadyExistEmbed });
         }
     }
 }

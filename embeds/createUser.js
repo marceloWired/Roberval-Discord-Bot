@@ -35,4 +35,16 @@ module.exports = {
             url: 'https://i.imgur.com/7qPpz1n.png',
         }
     },
+    incorrectUrlEmbed: {
+        color: '#c41212',
+        title: 'Houve um erro com a criação do seu usuário',
+        author: {
+            name: 'Erro',
+            icon_url: 'https://i.imgur.com/7qPpz1n.png',
+        },
+        description: 'A URL informada não é de um perfil steam válido',
+        thumbnail: {
+            url: 'https://i.imgur.com/7qPpz1n.png',
+        }
+    }
 }
