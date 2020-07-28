@@ -41,7 +41,10 @@ module.exports = {
             return message.channel.send({ embed: failBrawlhallaEmbed });
         }
 
-        const brawlhallaEmbed = createEmbed(brawlhallaData.name, brawlhallaData.rating, brawlhallaData.tier, brawlhallaData.peak_rating);
+        const winrateAux = (brawlhallaData.wins / brawlhallaData.games);
+        const winrate = (winrateAux * 100).toFixed(2) + '%';
+
+        const brawlhallaEmbed = createEmbed(brawlhallaData.name, brawlhallaData.rating, brawlhallaData.tier, brawlhallaData.peak_rating, winrate);
 
         return message.channel.send({ embed: brawlhallaEmbed });
     }

@@ -1,5 +1,5 @@
 module.exports = {
-    createEmbed: (name, rating, tier, peak_rating) => {
+    createEmbed: (name, rating, tier, peak_rating, winrate) => {
         let brawlhallaEmbed = {
             color: '#29d426',
             title: `Nome: ${name}`,
@@ -22,6 +22,10 @@ module.exports = {
                 {
                     name: 'Elo Máximo',
                     value: `${peak_rating}`,
+                },
+                {
+                    name: 'Winrate',
+                    value: `${winrate}`,
                 },
             ],
         }
