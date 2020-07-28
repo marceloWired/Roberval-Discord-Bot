@@ -4,6 +4,7 @@ const { brawlhallaApiKey } = require('../config.json');
 const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed, userMentionError } = require('../embeds/brawlhallaStats')
 const isEmpty = require('../utils/isEmpty');
 const getUserMentioned = require('../utils/getUserMentioned');
+const getIcon = require('../utils/getIcon');
 
 module.exports = {
     name: 'braw-stats',
@@ -41,10 +42,12 @@ module.exports = {
             return message.channel.send({ embed: failBrawlhallaEmbed });
         }
 
+        let icon = getIcon(brawlhallaData.tier);
+
         const winrateAux = (brawlhallaData.wins / brawlhallaData.games);
         const winrate = (winrateAux * 100).toFixed(2) + '%';
 
-        const brawlhallaEmbed = createEmbed(brawlhallaData.name, brawlhallaData.rating, brawlhallaData.tier, brawlhallaData.peak_rating, winrate);
+        const brawlhallaEmbed = createEmbed(brawlhallaData, winrate, icon);
 
         return message.channel.send({ embed: brawlhallaEmbed });
     }

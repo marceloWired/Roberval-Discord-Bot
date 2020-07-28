@@ -1,31 +1,38 @@
 module.exports = {
-    createEmbed: (name, rating, tier, peak_rating, winrate) => {
+    createEmbed: (brawlhallaData, winrate, icon) => {
         let brawlhallaEmbed = {
             color: '#29d426',
-            title: `Nome: ${name}`,
+            title: `Nome: ${brawlhallaData.name}`,
             author: {
                 name: 'Ranked Status',
                 icon_url: 'https://i.imgur.com/P8lmST5.png',
             },
             thumbnail: {
-                url: 'https://i.imgur.com/P8lmST5.png',
+                url: icon,
             },
             fields: [
                 {
                     name: 'Tier',
-                    value: `${tier}`,
+                    value: `${brawlhallaData.tier}`,
                 },
                 {
                     name: 'Elo Atual',
-                    value: `${rating}`,
+                    value: `${brawlhallaData.rating}`,
                 },
                 {
                     name: 'Elo Máximo',
-                    value: `${peak_rating}`,
+                    value: `${brawlhallaData.peak_rating}`,
+                    inline: true
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: true
                 },
                 {
                     name: 'Winrate',
                     value: `${winrate}`,
+                    inline: true
                 },
             ],
         }
