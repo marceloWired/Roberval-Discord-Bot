@@ -20,6 +20,9 @@ module.exports = {
         } else {
             targetID = message.author.id;
         }
+        if (targetID == 263357794470723584) {
+            return message.reply('VOCÊ ESTÁ BANIDO!');
+        }
 
         const user = await User.findOne({ discordID: targetID });
 
