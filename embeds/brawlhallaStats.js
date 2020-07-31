@@ -1,8 +1,7 @@
 module.exports = {
-    createEmbed: (brawlhallaData, winrate, icon) => {
+    createEmbed: (brawlhallaData, winrate, icon, duoInfo) => {
         let brawlhallaEmbed = {
             color: '#29d426',
-            title: `Nome: ${brawlhallaData.name}`,
             author: {
                 name: 'Ranked Status',
                 icon_url: 'https://i.imgur.com/P8lmST5.png',
@@ -12,12 +11,49 @@ module.exports = {
             },
             fields: [
                 {
+                    name: 'Nick',
+                    value: `${brawlhallaData.name}`,
+                    inline: true,
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: true
+                },
+                {
+                    name: 'Melhor duo',
+                    value: `${duoInfo.teamname}`,
+                    inline: true
+                },
+                {
                     name: 'Tier',
                     value: `${brawlhallaData.tier}`,
+                    inline: true,
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: true
+                },
+                {
+                    name: 'Tier (duo)',
+                    value: `${duoInfo.tier}`,
+                    inline: true
                 },
                 {
                     name: 'Elo Atual',
                     value: `${brawlhallaData.rating}`,
+                    inline: true,
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: true
+                },
+                {
+                    name: 'Elo Atual (duo)',
+                    value: `${duoInfo.rating}`,
+                    inline: true,
                 },
                 {
                     name: 'Elo Máximo',
@@ -30,10 +66,16 @@ module.exports = {
                     inline: true
                 },
                 {
-                    name: 'Winrate',
-                    value: `${winrate}`,
+                    name: 'Elo Máximo (duo)',
+                    value: `${duoInfo.peak_rating}`,
                     inline: true
                 },
+                {
+                    name: 'Winrate',
+                    value: `${winrate}`,
+                },
+
+
             ],
         }
 

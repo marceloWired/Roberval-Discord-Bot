@@ -5,6 +5,7 @@ const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed, userMentionError }
 const isEmpty = require('../utils/isEmpty');
 const getUserMentioned = require('../utils/getUserMentioned');
 const getIcon = require('../utils/getIcon');
+const sortByRating = require('../utils/sortArray');
 
 module.exports = {
     name: 'braw-stats',
@@ -46,11 +47,13 @@ module.exports = {
         }
 
         let icon = getIcon(brawlhallaData.tier);
+        const duoArray = brawlhallaData["2v2"].sort(sortByRating);
+        const highDuoRating = duoArray[0];
 
         const winrateAux = (brawlhallaData.wins / brawlhallaData.games);
         const winrate = (winrateAux * 100).toFixed(2) + '%';
 
-        const brawlhallaEmbed = createEmbed(brawlhallaData, winrate, icon);
+        const brawlhallaEmbed = createEmbed(brawlhallaData, winrate, icon, highDuoRating);
 
         return message.channel.send({ embed: brawlhallaEmbed });
     }
