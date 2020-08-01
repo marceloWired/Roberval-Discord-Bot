@@ -46,5 +46,13 @@ module.exports = {
         thumbnail: {
             url: 'https://i.imgur.com/7qPpz1n.png',
         }
+    },
+    loadingEmbed: {
+        color: '#bdc9c1',
+        title: 'Criando usuário...',
+        description: 'Aguarde enquanto criamos seu usuário!',
+        thumbnail: {
+            url: 'https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif'
+        }
     }
 }

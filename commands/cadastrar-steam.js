@@ -1,7 +1,7 @@
 const findSteamID = require('../utils/findSteamId');
 const createUser = require('../utils/createUser');
 const User = require('../models/User');
-const { errorEmbed, successEmbed, alreadyExistEmbed, incorrectUrlEmbed } = require('../embeds/createUser')
+const { errorEmbed, successEmbed, alreadyExistEmbed, incorrectUrlEmbed, loadingEmbed } = require('../embeds/createUser')
 
 module.exports = {
     name: 'cadastrar-steam',
@@ -15,7 +15,7 @@ module.exports = {
         const userVerify = await User.findOne({ discordID: authorID });
 
         if (userVerify) {
-            message.channel.send({ embed: alreadyExistEmbed });
+            return message.channel.send({ embed: alreadyExistEmbed });
         } else {
             const urlSteam = args[0];
 
@@ -24,6 +24,8 @@ module.exports = {
             if (!verifyUrl) {
                 return message.channel.send({ embed: incorrectUrlEmbed });
             }
+
+            message.channel.send({ embed: loadingEmbed });
 
             const { steamID64 } = await findSteamID(urlSteam);
 
@@ -35,9 +37,15 @@ module.exports = {
             const response = await createUser(user);
 
             if (!response) {
-                message.channel.send({ embed: errorEmbed });
+                message.channel.bulkDelete(1, true).catch(err => {
+                    console.log(err);
+                });
+                return message.channel.send({ embed: errorEmbed });
             } else {
-                message.channel.send({ embed: successEmbed });
+                message.channel.bulkDelete(1, true).catch(err => {
+                    console.log(err);
+                });
+                return message.channel.send({ embed: successEmbed });
             }
         }
     }
