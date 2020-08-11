@@ -25,7 +25,7 @@ module.exports = {
                 return message.channel.send({ embed: incorrectUrlEmbed });
             }
 
-            message.channel.send({ embed: loadingEmbed });
+            const loadMessage = await message.channel.send({ embed: loadingEmbed });
 
             const { steamID64 } = await findSteamID(urlSteam);
 
@@ -37,14 +37,10 @@ module.exports = {
             const response = await createUser(user);
 
             if (!response) {
-                message.channel.bulkDelete(1, true).catch(err => {
-                    console.log(err);
-                });
+                loadMessage.delete();
                 return message.channel.send({ embed: errorEmbed });
             } else {
-                message.channel.bulkDelete(1, true).catch(err => {
-                    console.log(err);
-                });
+                loadMessage.delete();
                 return message.channel.send({ embed: successEmbed });
             }
         }

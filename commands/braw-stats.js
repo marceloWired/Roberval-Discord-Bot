@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const axios = require('axios');
 const { brawlhallaApiKey } = require('../config.json');
-const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed, userMentionError } = require('../embeds/brawlhallaStats')
+const { createEmbed, failBrawlhallaEmbed, notRegisteredEmbed, userMentionError, createEmbedSolo } = require('../embeds/brawlhallaStats')
 const isEmpty = require('../utils/isEmpty');
 const getUserMentioned = require('../utils/getUserMentioned');
 const getIcon = require('../utils/getIcon');
@@ -20,9 +20,6 @@ module.exports = {
             }
         } else {
             targetID = message.author.id;
-        }
-        if (targetID == 263357794470723584) {
-            return message.reply('VOCÊ ESTÁ BANIDO!');
         }
 
         const user = await User.findOne({ discordID: targetID });
@@ -47,11 +44,18 @@ module.exports = {
         }
 
         let icon = getIcon(brawlhallaData.tier);
-        const duoArray = brawlhallaData["2v2"].sort(sortByRating);
-        const highDuoRating = duoArray[0];
-
         const winrateAux = (brawlhallaData.wins / brawlhallaData.games);
         const winrate = (winrateAux * 100).toFixed(2) + '%';
+
+        const verifyEmptyDuo = isEmpty(brawlhallaData["2v2"]);
+
+        if (verifyEmptyDuo) {
+            let brawlhallaEmbedSolo = createEmbedSolo(brawlhallaData, winrate, icon);
+            return message.channel.send({ embed: brawlhallaEmbedSolo });
+        }
+
+        const duoArray = brawlhallaData["2v2"].sort(sortByRating);
+        const highDuoRating = duoArray[0];
 
         const brawlhallaEmbed = createEmbed(brawlhallaData, winrate, icon, highDuoRating);
 
