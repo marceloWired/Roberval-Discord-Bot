@@ -18,6 +18,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
+    client.user.setActivity('Brawlhalla brawlhalla')
     console.log('Ready!');
 });
 
