@@ -5,11 +5,11 @@ Roberval é um bot de Discord que atualmente busca todas as informações da fil
 
 ## Exemplo de uso
 
-Primeiro você deve cadastrar sua steam utilizando o comando __cadastrar-steam <linkSteam>
+Primeiro você deve cadastrar sua steam utilizando o comando _cadastrar-steam <linkSteam>
 
 ![](./readme-img/cadastrar-steam.png)
 
-Em seguida, você pode utilizar o comando __cadastrar-steam para consultar suas informações da fila ranqueada
+Em seguida, você pode utilizar o comando _braw-stats para consultar suas informações da fila ranqueada
 
 ![](./readme-img/braw-stats.png)
 
