@@ -1,7 +1,5 @@
 # Roberval Informante
-> Bot de Discord que faz de tudo um pouco.
-
-Roberval é um bot de Discord que atualmente busca todas as informações da fila Ranqueada no Brawlhalla
+> Roberval é um bot de Discord que atualmente busca todas as informações da fila Ranqueada no Brawlhalla
 
 ## Exemplo de uso
 
