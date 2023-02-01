@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "discord.js": "^12.2.0",
-    "mongoose": "^5.9.25",
+    "mongoose": "^5.13.15",
     "puppeteer": "^3.3.0"
   },
   "devDependencies": {
